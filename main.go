@@ -1,9 +1,14 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"net/http"
 )
+
+type RandomMessage struct {
+	Description string
+	DiceRoll    int
+}
 
 func main() {
 	server := http.NewServeMux()
@@ -18,5 +23,9 @@ func main() {
 }
 
 func emitBeacon(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "This isn't a randomness beacon yet, but I will give you a fair dice roll: 4")
+	m := RandomMessage{"This isn't a randomness beacon, but I will give you a fair dice roll.", 4}
+
+	w.Header().Set("Content-Type", "application/json")
+
+	json.NewEncoder(w).Encode(m)
 }
