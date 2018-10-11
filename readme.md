@@ -17,7 +17,10 @@ It may be helpful, but is not necessary, to install Go: https://golang.org/dl/
 1. Clone this repository locally. It is not necessary to use `go get` because
 containers will be used for compilation.
 
-2. Run `./setup.sh`. This will create a Cloud project for you and deploy the project.
+2. Run `./setup.sh`. This creates a Google Cloud project, connects it to a
+billing account, creates a kubnetes cluster, provisions a public IP addresss and
+other details necessary to run a GKE webapp. Finally it deploys the app so you
+can see it in your web browser.
 
 After creation, project configuration is saved in `config.sh`.
 
@@ -29,15 +32,17 @@ script is not idempotent yet and will harmlessly fail after it has succeeded onc
 
 To build and run docker locally: `./run.sh`
 
-This will launch a web server at: http://localhost:8080
+This packages local code into a container and launches a web server at: http://localhost:8080
 
 
 ## Deploying
 
 To deploy an updated version to GKE: `./deploy.sh`
 
-To facilitate playing with this toy project, deployments are made directly from
-the source code in this directory, independent of git status.
+This pushes a new image version to the Google Container Repository and updates
+your kubernetes cluster to use it.
+
+Deployments are made directly from local source code independent of git status.
 
 
 ## Autoscaling
