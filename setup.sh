@@ -174,11 +174,10 @@ set +x
 
 cat <<-EOD
 
-	${green}Done!$TR An external IP is currently being allocated. This may take a few
-	minutes. To check on this, run: kubectl get service"
+	📣  ${green}Done!$TR An external IP is currently being allocated.
+	
+	Please wait a minute and then run: kubectl get service
 
-	When it's complete, you can go to that IP in your browser to see the app perform.
+	Go to the External IP in your browser to view the app.
 
 EOD
-
-kubectl get service
